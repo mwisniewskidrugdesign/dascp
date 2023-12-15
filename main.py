@@ -55,3 +55,13 @@ def normal_pdf(x: float, mi: float = 0, sigma: float = 1) -> float:
     return (math.exp(-(x-mi)**2 / 2 / sigma**2)) / (SQRT_TWO_PI * sigma)
 
 
+def bernoulli_trial(p: float) -> int:
+    """Zwraca 1 z prawdopodobienstwem p i 0 z prawdopodobienstwem 1 - p"""
+    return 1 if random.random() < p else 0
+
+def binominal(n: int, p: float) -> int:
+    """zwraca sumę z prób Bernoulliego"""
+    return sum(bernoulli_trial(p) for _ in range(n))
+
+a = binominal(10000000, 0.55)
+print(a)
